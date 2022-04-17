@@ -225,4 +225,9 @@ class CommerceServiceImplTest {
     @Test
     void deleteOrder() {
     }
+
+    @Test
+    void sourceTreeTest() {
+        System.out.println("ㅎㅎ");
+    }
 }
