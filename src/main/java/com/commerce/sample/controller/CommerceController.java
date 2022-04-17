@@ -27,7 +27,7 @@ public class CommerceController {
     @PostMapping("/insert/person")
     public ResponseEntity<String> insertPerson(@RequestBody PersonDTO personDTO) throws Exception {
         if (ObjectUtils.isEmpty(personDTO)) {
-            throw new Exception("파라미터 오류1");
+            throw new Exception("파라미터 오류");
         }else{
             commerceService.insertPerson(personDTO);
             return ResponseEntity.ok("인원 추가 완료");
