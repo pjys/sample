@@ -1,3 +1,4 @@
+/*
 package com.commerce.sample.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -17,3 +18,4 @@ public class CommerceConfig {
     public DataSource oracleDataSource(){return DataSourceBuilder.create().build();}
 
 }
+*/
