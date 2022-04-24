@@ -2,16 +2,16 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://14.35.68.147:5432/sample
-    platform: postgres
     username: pjys
     password: pjys
 jpa:
-  database-platform: org.hibernate.dialect.Oracle10gDialect
+  database-platform: org.hibernate.dialect.Postgres10gDialect
   show-sql: true
   hibernate:
     format_sql: true
-    ddl-auto: create
-    datasource:
+    ddl-auto: update
+    naming:
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
   thymeleaf:
     cache: false

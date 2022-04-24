@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Builder
-@Table(name = "PERSON")
+@Table(name = "person")
 public class PersonDTO {
     @Id
     private String personId;
