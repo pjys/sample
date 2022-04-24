@@ -13,4 +13,5 @@ jpa:
     ddl-auto: create
     datasource:
 
-
+  thymeleaf:
+    cache: false
