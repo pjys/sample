@@ -4,6 +4,9 @@ spring:
     url: jdbc:postgresql://14.35.68.147:5432/sample
     username: pjys
     password: pjys
+  redis:
+    host: saama.kr
+    port: 6379
 jpa:
   database-platform: org.hibernate.dialect.Postgres10gDialect
   show-sql: true
