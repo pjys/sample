@@ -1,6 +1,6 @@
-package com.pjys.sample.controller;
+package com.pjys.common.controller;
 
-import com.pjys.sample.service.CommerceService;
+import com.pjys.common.service.CommerceService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

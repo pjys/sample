@@ -1,6 +1,6 @@
-package com.pjys.sample.repository;
+package com.pjys.common.repository;
 
-import com.pjys.sample.model.PersonDTO;
+import com.pjys.common.model.PersonDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

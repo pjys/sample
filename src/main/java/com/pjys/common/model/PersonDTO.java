@@ -1,4 +1,4 @@
-package com.pjys.sample.model;
+package com.pjys.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
