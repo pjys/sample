@@ -1,8 +1,8 @@
-package com.pjys.sample.service;
+package com.pjys.common.service;
 
-import com.pjys.sample.model.OrderDTO;
-import com.pjys.sample.model.PersonDTO;
-import com.pjys.sample.model.ProductDTO;
+import com.pjys.common.model.OrderDTO;
+import com.pjys.common.model.PersonDTO;
+import com.pjys.common.model.ProductDTO;
 
 import java.util.List;
 

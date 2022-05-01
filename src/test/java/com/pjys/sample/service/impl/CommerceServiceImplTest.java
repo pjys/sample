@@ -1,11 +1,11 @@
-package com.pjys.sample.service.impl;
+package com.pjys.common.service.impl;
 
-import com.pjys.sample.model.OrderDTO;
-import com.pjys.sample.model.PersonDTO;
-import com.pjys.sample.model.ProductDTO;
-import com.pjys.sample.repository.OrderRepository;
-import com.pjys.sample.repository.PersonRepository;
-import com.pjys.sample.repository.ProductRepository;
+import com.pjys.common.model.OrderDTO;
+import com.pjys.common.model.PersonDTO;
+import com.pjys.common.model.ProductDTO;
+import com.pjys.common.repository.OrderRepository;
+import com.pjys.common.repository.PersonRepository;
+import com.pjys.common.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

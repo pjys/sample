@@ -1,4 +1,4 @@
-package com.pjys.sample.model;
+package com.pjys.common.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.pjys.sample.controller;
+package com.pjys.common.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

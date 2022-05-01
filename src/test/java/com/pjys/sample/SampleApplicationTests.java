@@ -1,4 +1,4 @@
-package com.pjys.sample;
+package com.pjys.common;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

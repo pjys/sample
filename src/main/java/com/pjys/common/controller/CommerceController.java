@@ -1,9 +1,9 @@
-package com.pjys.sample.controller;
+package com.pjys.common.controller;
 
-import com.pjys.sample.model.OrderDTO;
-import com.pjys.sample.model.PersonDTO;
-import com.pjys.sample.model.ProductDTO;
-import com.pjys.sample.service.CommerceService;
+import com.pjys.common.model.OrderDTO;
+import com.pjys.common.model.PersonDTO;
+import com.pjys.common.model.ProductDTO;
+import com.pjys.common.service.CommerceService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
