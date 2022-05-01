@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" th:src="@{/js/lib/jquery/jquery-3.5.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/lib/stomp-2.3.3/stomp.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/lib/sockjs-1.4.0/sockjs.min.js}"></script>
+</head>
+<body>
+<div id="chat-area"></div>
+<input type="text" id="chatText"  />
+<input type="button" id="chatbtn" th:value="전송"/>
+</body>
+<script></script>
+<script type="text/javascript">
+    $("#chatbtn").on("click",function(){
+        stompClient.send('app/test/chat',{},JSON.stringify({sender:"필원",message:$("#chatText").val()}))
+    });
+    let socket = new SockJS('/ws');
+    let stompClient = Stomp.over(socket);
+    stompClient.connect({}, onConnected, onError);
+
+    //소켓 정상 연결된 후
+    function onConnected(){
+        stompClient.subscribe('/topic/', onMessageReceived); //연결되면 수신시 받을 함수와 매핑
+    }
+    //소켓 연결 에러 시
+    function onError(){
+        console.log("onError");
+        socket = null;
+    }
+
+    function onMessageReceived(payload){
+        let message = JSON.parse(payload.body);
+        console.log(message);
+    }
+</script>
+</html>
