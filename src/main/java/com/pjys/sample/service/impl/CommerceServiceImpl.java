@@ -1,12 +1,12 @@
-package com.commerce.sample.service.impl;
+package com.pjys.sample.service.impl;
 
-import com.commerce.sample.model.OrderDTO;
-import com.commerce.sample.model.PersonDTO;
-import com.commerce.sample.model.ProductDTO;
-import com.commerce.sample.repository.OrderRepository;
-import com.commerce.sample.repository.PersonRepository;
-import com.commerce.sample.repository.ProductRepository;
-import com.commerce.sample.service.CommerceService;
+import com.pjys.sample.model.OrderDTO;
+import com.pjys.sample.model.PersonDTO;
+import com.pjys.sample.model.ProductDTO;
+import com.pjys.sample.repository.OrderRepository;
+import com.pjys.sample.repository.PersonRepository;
+import com.pjys.sample.repository.ProductRepository;
+import com.pjys.sample.service.CommerceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

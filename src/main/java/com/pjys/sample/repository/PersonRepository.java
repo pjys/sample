@@ -1,6 +1,6 @@
-package com.commerce.sample.repository;
+package com.pjys.sample.repository;
 
-import com.commerce.sample.model.PersonDTO;
+import com.pjys.sample.model.PersonDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

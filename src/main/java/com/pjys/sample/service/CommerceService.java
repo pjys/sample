@@ -1,11 +1,10 @@
-package com.commerce.sample.service;
+package com.pjys.sample.service;
 
-import com.commerce.sample.model.OrderDTO;
-import com.commerce.sample.model.PersonDTO;
-import com.commerce.sample.model.ProductDTO;
+import com.pjys.sample.model.OrderDTO;
+import com.pjys.sample.model.PersonDTO;
+import com.pjys.sample.model.ProductDTO;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CommerceService {
     void insertPerson(PersonDTO personDTO);

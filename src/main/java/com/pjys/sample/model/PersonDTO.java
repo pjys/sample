@@ -1,4 +1,4 @@
-package com.commerce.sample.model;
+package com.pjys.sample.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,9 +14,11 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Builder
-@Table(name = "PRODUCT")
-public class ProductDTO {
+@Table(name = "person")
+public class PersonDTO {
     @Id
-    private String productId;
-    private String productName;
+    private String personId;
+    private String personName;
+    private String personBirth;
+    private Character personGender;
 }

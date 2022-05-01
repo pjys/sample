@@ -1,6 +1,6 @@
-package com.commerce.sample.repository;
+package com.pjys.sample.repository;
 
-import com.commerce.sample.model.OrderDTO;
+import com.pjys.sample.model.OrderDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderRepository extends JpaRepository<OrderDTO, String> {
