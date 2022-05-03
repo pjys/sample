@@ -23,6 +23,6 @@ public class WsController {
     @MessageMapping("/test/chat")
     public void testReceive(@Payload ChatMessage message){
         message.setMessageType(MessageType.TEST);
-        messagingTemplate.convertAndSend("/topic/test/",message);
+        messagingTemplate.convertAndSend("/topic/chat/",message);
     }
 }

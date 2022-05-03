@@ -15,7 +15,7 @@
 <script></script>
 <script type="text/javascript">
     $("#chatbtn").on("click",function(){
-        stompClient.send('app/test/chat',{},JSON.stringify({sender:"필원",message:$("#chatText").val()}))
+        stompClient.send('/app/test/chat',{},JSON.stringify({sender:"필원",message:$("#chatText").val()}))
     });
     let socket = new SockJS('/ws');
     let stompClient = Stomp.over(socket);
@@ -23,7 +23,7 @@
 
     //소켓 정상 연결된 후
     function onConnected(){
-        stompClient.subscribe('/topic/', onMessageReceived); //연결되면 수신시 받을 함수와 매핑
+        stompClient.subscribe('/topic/chat/', onMessageReceived); //연결되면 수신시 받을 함수와 매핑
     }
     //소켓 연결 에러 시
     function onError(){
