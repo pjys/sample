@@ -1,8 +1,8 @@
 package com.pjys.board.entity;
 
 import com.pjys.common.config.BooleanToYNConverter;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.pjys.common.entity.BaseEntity;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -10,33 +10,34 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
-@Data
+@AllArgsConstructor
+@Builder
+@Getter
 @Entity(name = "board")
-public class Board {
+public class Board extends BaseEntity {
 
     @Id @GeneratedValue
-    private long boardId;
+    private long boardId; // 게시글번호
 
     @Column(nullable = false)
-    private String title;
+    private String title; // 제목
 
-    private String contents;
+    @Lob
+    private String contents; // 본문
 
     @Column(length = 2)
-    private String category;
+    private String category; // 카테고리
 
-    private String userId;
+    private String userId; // 작성자Id
 
-    private String userName;
+    private String userName; // 작성자명
 
+    @Column(name = "delete_yn" ,length = 1)
     @Convert(converter = BooleanToYNConverter.class)
-    private boolean isDelete;
+    private boolean isDelete; // 삭제여부
 
-    @CreatedDate
-    private LocalDateTime createDate;
+    private int views; // 조회수
 
-    @LastModifiedDate
-    private LocalDateTime updateDate;
+    private int comments; // 댓글수
 
-    private int views;
 }
