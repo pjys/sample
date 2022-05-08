@@ -7,14 +7,16 @@ spring:
   redis:
     host: saama.kr
     port: 6379
-jpa:
-  database-platform: org.hibernate.dialect.Postgres10gDialect
-  show-sql: true
-  hibernate:
-    format_sql: true
-    ddl-auto: update
-    naming:
-      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    # hibernate: ddl-auto 사용 여부 / 기본값 false
+    generate-ddl: true
+    hibernate:
+      format_sql: true
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
   thymeleaf:
     cache: false
