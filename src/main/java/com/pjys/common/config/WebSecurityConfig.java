@@ -1,15 +1,15 @@
 package com.pjys.common.config;
 
-import antlr.BaseAST;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +29,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
+
+        http
+                // /login에 대한 익명 액세스를 허용
+                // /admin을 ADMIN 역할로 제한 하고 다른 모든 것을 보호
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("admin")
+                .antMatchers("/**").permitAll(); // 임시
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+
+        web.ignoring().antMatchers("/css/**", "/scripts/**", "image/**", "/fonts/**", "lib/**");
     }
 
     /*@Override
