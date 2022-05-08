@@ -3,14 +3,12 @@ package com.pjys.auth.domain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
 @EqualsAndHashCode(of="roleNo")
+@Table(name = "MEMBER_ROLE")
 public class MemberRole {
 
     @Id
