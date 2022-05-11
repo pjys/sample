@@ -1,17 +1,15 @@
 package com.pjys.ws.vo;
 
-import com.pjys.ws.types.MessageType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
-@Setter
 @Getter
+@Setter
 @Builder
-public class ChatMessage {
-    private MessageType messageType;
-    private String message;
+@ToString
+public class UserInfo {
     private String sender;
+
 }

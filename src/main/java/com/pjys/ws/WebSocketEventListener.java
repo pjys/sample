@@ -27,6 +27,14 @@ public class WebSocketEventListener {
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
+
+        String sender = (String) headerAccessor.getSessionAttributes().get("sender");
+
+        WsController.users.remove(sender);
+
+        messagingTemplate.convertAndSend("/topic/chat/",sender+" leave");
+        System.out.println(sender+" leave");
+
         logger.info("Session Disconnected");
     }
 }
