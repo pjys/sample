@@ -17,6 +17,7 @@ public class WsController {
 
     @GetMapping("chat/index")
     public String index(){
+        System.out.println("!");
         return "chat/chat";
     }
 
