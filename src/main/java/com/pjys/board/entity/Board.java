@@ -3,16 +3,14 @@ package com.pjys.board.entity;
 import com.pjys.common.config.BooleanToYNConverter;
 import com.pjys.common.entity.BaseEntity;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
+@Setter
 @Entity(name = "board")
 public class Board extends BaseEntity {
 
@@ -22,7 +20,8 @@ public class Board extends BaseEntity {
     @Column(nullable = false)
     private String title; // 제목
 
-    @Lob
+    //@Lob //postresql 에서 이 타입을 작성할 경우, DB OID 로 저장됨 그래서 TEXT COLUMN 으로 변경
+    @Column(columnDefinition="TEXT")
     private String contents; // 본문
 
     @Column(length = 2)
