@@ -1,6 +1,7 @@
 package com.pjys.board.dto;
 
 import com.pjys.board.entity.Board;
+import com.pjys.board.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,7 +30,7 @@ public class BoardDTO {
         return Board.builder()
                 .title(title)
                 .contents(contents)
-                .category(category)
+                .category(Category.enumOf(category))
                 .userId(userId)
                 .userName(userName)
                 .isDelete(false)
@@ -43,7 +44,7 @@ public class BoardDTO {
                 .boardId(board.getBoardId())
                 .title(board.getTitle())
                 .contents(board.getContents())
-                .category(board.getCategory())
+                .category(board.getCategory().getValue())
                 .userId(board.getUserId())
                 .userName(board.getUserName())
                 .isDelete(board.isDelete())

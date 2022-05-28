@@ -3,6 +3,7 @@ package com.pjys.board.service;
 import com.pjys.board.dto.BoardDTO;
 import com.pjys.board.dto.CreateBoardRequest;
 import com.pjys.board.entity.Board;
+import com.pjys.board.entity.Category;
 import com.pjys.board.repository.BoardRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -12,11 +13,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-
-import javax.transaction.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -63,7 +59,7 @@ class BoardServiceTest {
     private CreateBoardRequest CreateBoardRequest() {
         CreateBoardRequest boardRequest = new CreateBoardRequest();
         boardRequest.setTitle("게시판테스트");
-        boardRequest.setCategory("1");
+        boardRequest.setCategory(Category.NORMAL.getValue());
         boardRequest.setContents("게시판내용");
         boardRequest.setUserId("lyh0208");
         boardRequest.setUserName("이연희");
@@ -88,7 +84,7 @@ class BoardServiceTest {
     private Board createBoardEntity(CreateBoardRequest createBoardRequest) {
         return Board.builder()
                 .title(createBoardRequest.getTitle())
-                .category(createBoardRequest.getCategory())
+                .category(Category.enumOf(createBoardRequest.getCategory()))
                 .contents(createBoardRequest.getContents())
                 .userId(createBoardRequest.getUserId())
                 .userName(createBoardRequest.getUserName())
