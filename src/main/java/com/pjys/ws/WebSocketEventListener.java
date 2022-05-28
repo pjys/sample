@@ -1,5 +1,6 @@
 package com.pjys.ws;
 
+import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
@@ -29,12 +31,13 @@ public class WebSocketEventListener {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
 
         String sender = (String) headerAccessor.getSessionAttributes().get("sender");
+        System.out.println(sender);
 
-        WsController.users.remove(sender);
-
-        messagingTemplate.convertAndSend("/topic/chat/",sender+" leave");
-        System.out.println(sender+" leave");
-
+        if(Strings.isNotEmpty(sender)){
+            WsController.users.remove(sender);
+            messagingTemplate.convertAndSend("/topic/chat/",sender+" leave");
+            System.out.println(sender+" leave");
+        }
         logger.info("Session Disconnected");
     }
 }
