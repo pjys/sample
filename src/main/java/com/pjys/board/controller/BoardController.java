@@ -22,17 +22,32 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/board/{id}")
-    public String getBoard(Model model, @PathVariable long id) {
+    public String boardDetail(Model model, @PathVariable long id) {
         BoardDTO board = boardService.getBoard(id);
         model.addAttribute("board", board);
-        return "/board";
+        return "/board/board";
     }
 
-    @PostMapping("/createBoard")
-    public String createBoard(Model model, CreateBoardRequest createBoard) {
+    @PostMapping("/board/write")
+    public String boardAdd(Model model, CreateBoardRequest createBoard) {
+        createBoard.setUserName("이연희");
+        createBoard.setUserId("lyh0208");
         Long newBoardId = boardService.createBoard(createBoard);
-        BoardDTO board = boardService.getBoard(newBoardId);
-        model.addAttribute("board", board);
-        return "/board";
+        //BoardDTO board = boardService.getBoard(newBoardId);
+        //model.addAttribute("board", board);
+        return "/board/board";
+    }
+
+    @GetMapping("/board/writeForm")
+    public String boardWriteForm(Model model) {
+        // TODO : 카테고리 개인화
+        return "/board/board_form";
+    }
+
+    @GetMapping("/boards")
+    public String boardList(Model model) {
+        //BoardDTO board = boardService.getBoard(id);
+        //model.addAttribute("board", board);
+        return "/board/board_list";
     }
 }

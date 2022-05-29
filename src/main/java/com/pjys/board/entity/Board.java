@@ -10,7 +10,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Getter
-@Setter
 @Entity(name = "board")
 public class Board extends BaseEntity {
 
@@ -25,7 +24,8 @@ public class Board extends BaseEntity {
     private String contents; // 본문
 
     @Column(length = 2)
-    private String category; // 카테고리
+    @Convert(converter = CategoryConverter.class)
+    private Category category; // 카테고리
 
     private String userId; // 작성자Id
 
