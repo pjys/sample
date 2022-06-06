@@ -59,31 +59,33 @@
 </body>
 <script></script>
 <script type="text/javascript">
-    // var USER_ID = Math.random().toString(36).substr(2,11); //랜덤아이디 생성
-    // $("#chatbtn").on("click",function(){
-    //     stompClient.send('/app/test/chat',{},JSON.stringify({sender:USER_ID,message:$("#chatText").val()}))
-    // });
-    // let socket = new SockJS('/ws');
-    // let stompClient = Stomp.over(socket);
-    // stompClient.connect({}, onConnected, onError);
-    //
-    // //소켓 정상 연결된 후
-    // function onConnected(){
-    //     stompClient.subscribe('/topic/chat/', onMessageReceived); //연결되면 수신시 받을 함수와 매핑
-    // }
-    // //소켓 연결 에러 시
-    // function onError(){
-    //     console.log("onError");
-    //     socket = null;
-    // }
-    //
-    // function onMessageReceived(payload){
-    //     let message = JSON.parse(payload.body);
-    //     console.log(message);
-    // }
-
     const Chat = (function(){
-        const myName = "blue";
+
+        var USER_ID = Math.random().toString(36).substr(2,11); //랜덤아이디 생성
+        const myName = USER_ID;
+        // $("#chatbtn").on("click",function(){
+        //     stompClient.send('/app/test/chat',{},JSON.stringify({sender:USER_ID,message:$("#chatText").val()}))
+        // });
+        let socket = new SockJS('/ws');
+        let stompClient = Stomp.over(socket);
+        stompClient.connect({}, onConnected, onError);
+
+        //소켓 정상 연결된 후
+        function onConnected(){
+            stompClient.subscribe('/topic/chat/', onMessageReceived); //연결되면 수신시 받을 함수와 매핑
+        }
+
+        function onMessageReceived(payload){
+            let message = JSON.parse(payload.body);
+            console.log(message);
+            resive(message);
+        }
+
+        //소켓 연결 에러 시
+        function onError(){
+            console.log("onError");
+            socket = null;
+        }
 
         // init 함수
         function init() {
@@ -91,10 +93,11 @@
             $(document).on('keydown', 'div.input-div textarea', function(e){
                 if(e.keyCode == 13 && !e.shiftKey) {
                     e.preventDefault();
-                    const message = $(this).val();
-
-                    // 메시지 전송
-                    sendMessage(message);
+                    stompClient.send('/app/test/chat',{},JSON.stringify({sender:USER_ID,message:$(this).val()}));
+                    // const message = $(this).val();
+                    //
+                    // // 메시지 전송
+                    // sendMessage(message);
                     // 입력창 clear
                     clearTextarea();
                 }
@@ -143,8 +146,8 @@
 
         // 메세지 수신
         function resive(data) {
-            const LR = (data.senderName != myName)? "left" : "right";
-            appendMessageTag("right", data.senderName, data.message);
+            const LR = (data.sender != myName)? "left" : "right";
+            appendMessageTag(LR, data.sender, data.message);
         }
 
         return {

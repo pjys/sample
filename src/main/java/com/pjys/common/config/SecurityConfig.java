@@ -41,6 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        // IFrame 동작하도록 설정
+        http.headers().frameOptions().disable();
+
         http
                 // /login에 대한 익명 액세스를 허용
                 // /admin을 ADMIN 역할로 제한 하고 다른 모든 것을 보호
