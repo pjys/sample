@@ -16,13 +16,13 @@ import javax.persistence.Table;
 @Entity
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Table(name = "boradhistory")
+@Table(name = "BORADHISTORY")
 public class HistoryVo {
     @Id
     private String historyId;
-    private String historyDt;
     private String boradId;
+    private String historyCommend;
+    private String historyDt;
     private String userId;
     private String userName;
-    private String historyCommend;
 }
