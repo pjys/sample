@@ -1,10 +1,7 @@
 package com.pjys.ws.vo;
 
 import com.pjys.ws.types.MessageType;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
 @Setter

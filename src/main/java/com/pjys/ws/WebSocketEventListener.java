@@ -1,5 +1,7 @@
 package com.pjys.ws;
 
+import com.pjys.ws.types.MessageType;
+import com.pjys.ws.vo.ChatMessage;
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,9 +34,14 @@ public class WebSocketEventListener {
         String sender = (String) headerAccessor.getSessionAttributes().get("sender");
         System.out.println(sender);
 
+        ChatMessage message = ChatMessage.builder()
+                .messageType(MessageType.LEAVE)
+                .sender(sender)
+                .build();
+
         if(Strings.isNotEmpty(sender)){
             WsController.users.remove(sender);
-            messagingTemplate.convertAndSend("/topic/chat/",sender+" leave");
+            messagingTemplate.convertAndSend("/topic/chat/",message);
             System.out.println(sender+" leave");
         }
         logger.info("Session Disconnected");

@@ -29,16 +29,22 @@ public class WsController {
 
     @MessageMapping("/test/chat")
     public void testReceive(@Payload ChatMessage message,SimpMessageHeaderAccessor headerAccessor){
+        System.out.println("메세지 듣는 유저들"+users);
+        message.setMessageType(MessageType.CHAT);
+        messagingTemplate.convertAndSend("/topic/chat/",message);
+    }
+
+    @MessageMapping("/test/enter")
+    public void userEnter(@Payload ChatMessage message,SimpMessageHeaderAccessor headerAccessor){
         if(users.get(message.getSender()) == null){
             users.put(message.getSender(),
                     UserInfo.builder()
-                    .sender(message.getSender())
-                    .build());
+                            .sender(message.getSender())
+                            .build());
             headerAccessor.getSessionAttributes().put("sender", message.getSender());
         }
-
-        System.out.println("메세지 듣는 유저들"+users);
-        message.setMessageType(MessageType.TEST);
+        message.setMessageType(MessageType.ENTER);
         messagingTemplate.convertAndSend("/topic/chat/",message);
     }
+
 }
