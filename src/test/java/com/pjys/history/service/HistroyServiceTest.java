@@ -27,17 +27,17 @@ class HistroyServiceTest {
     @Mock
     private HistroyRepository histroyRepository;
 
-/*    @Test
+    @Test
     @DisplayName("borad 모든 이력 조회 TEST")
     void allSelectHistoryTest() {
         when(histroyRepository.findAll()).thenReturn(new ArrayList<>(){
             {
-                add(HistoryDTO.builder().user_name("이연희").build());
+                add(HistoryDTO.builder().userName("이연희").build());
             }
         });
         List<HistoryDTO> historyDTOList = histroyService.allSelectHistory();
         assertNotNull(historyDTOList);
-        assertEquals(historyDTOList.get(0).getUser_name(), "이연희");
-    }*/
+        assertEquals(historyDTOList.get(0).getUserName(), "이연희");
+    }
 
 }
