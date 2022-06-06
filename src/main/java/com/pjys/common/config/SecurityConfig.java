@@ -1,5 +1,6 @@
 package com.pjys.common.config;
 
+import com.pjys.auth.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    CustomUserDetailsService customUserDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -24,6 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         // spring-security에서 로그인 처리 구현을 위해 주입 후 인증에 대한 처리 진행
         // UserDetailsService를 이용해 로그인 인증 처리
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -42,7 +47,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("admin")
-                .antMatchers("/**").permitAll(); // 임시
+                .antMatchers("/**").permitAll() // 임시
+                .and().formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/login") // post로 로그인을 할 url
+                .defaultSuccessUrl("/")
+            .failureUrl("/login")
+            .and()
+            .logout();
     }
 
     @Override
