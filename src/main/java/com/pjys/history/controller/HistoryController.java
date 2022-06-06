@@ -22,7 +22,7 @@ public class HistoryController {
     @Autowired
     private final HistroyService histroyService;
 
-    @ApiOperation(value = "borad 모든 이력 조회")
+    @ApiOperation(value = "borad 모든 이력 조회", notes = "boardhistory 테이블의 모든정보를 가져온다")
     @GetMapping("/board/history")
     public ResponseEntity<List<HistoryDTO>> allSelectHistory() {
         return ResponseEntity.ok(histroyService.allSelectHistory());
