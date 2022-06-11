@@ -24,7 +24,8 @@ public class Board extends BaseEntity {
     private String contents; // 본문
 
     @Column(length = 2)
-    @Convert(converter = CategoryConverter.class)
+    //@Convert(converter = CategoryConverter.class)
+    @Enumerated(EnumType.STRING)
     private Category category; // 카테고리
 
     private String userId; // 작성자Id
@@ -38,5 +39,9 @@ public class Board extends BaseEntity {
     private int views; // 조회수
 
     private int comments; // 댓글수
+
+    public void addViewCount() {
+        this.views ++;
+    }
 
 }
