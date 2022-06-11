@@ -1,26 +1,26 @@
 package com.pjys.auth.domain;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Slf4j
+@Getter @Setter
 public class SecurityMember extends User {
 
-    private static final String ROLE_PREFIX = "ROLE_";
-    private static final long serialVersionUID = 1L;
+    private Member member;
 
     public SecurityMember(Member member) {
-        super(member.getUserId(), member.getUserPassword(), makeGrantedAuthority(member.getRoles()));
+        super(member.getUserName(), member.getUserPassword(), AuthorityUtils.createAuthorityList(member.getRole().toString()));
+
+        log.info("SecurityUser member.username = {}", member.getUserName());
+        log.info("SecurityUser member.password = {}", member.getUserPassword());
+        log.info("SecurityUser member.role = {}", member.getRole().toString());
+
+        this.member = member;
     }
 
-    private static List<GrantedAuthority> makeGrantedAuthority(List<MemberRole> roles) {
-
-        List<GrantedAuthority> list = new ArrayList<>();
-        roles.forEach(role -> list.add(new SimpleGrantedAuthority(ROLE_PREFIX + role.getRoleName())));
-
-        return list;
-    }
 }
