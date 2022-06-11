@@ -8,11 +8,13 @@ public class CategoryConverter implements AttributeConverter<Category, String> {
 
     @Override
     public String convertToDatabaseColumn(Category attribute) {
-        return attribute.getValue();
+        return null;
+        // return attribute.getValue();
     }
 
     @Override
     public Category convertToEntityAttribute(String dbData) {
-        return Category.enumOf(dbData);
+        return null;
+        // return Category.enumOf(dbData);
     }
 }
