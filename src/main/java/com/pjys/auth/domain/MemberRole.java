@@ -1,19 +1,15 @@
 package com.pjys.auth.domain;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
-import javax.persistence.*;
+@Getter
+public enum MemberRole {
 
-@Data
-@Entity
-@EqualsAndHashCode(of="roleNo")
-@Table(name = "MEMBER_ROLE")
-public class MemberRole {
+    ROLE_ADMIN("관리자"), ROLE_MANAGER("매니저"), ROLE_MEMBER("일반사용자");
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long roleNo;
+    private String description;
 
-    private String roleName;
+    MemberRole(String description) {
+        this.description = description;
+    }
 }
