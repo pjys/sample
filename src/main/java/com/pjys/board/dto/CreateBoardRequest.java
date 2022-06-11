@@ -1,8 +1,6 @@
 package com.pjys.board.dto;
 
 import com.pjys.board.entity.Board;
-import com.pjys.board.entity.Category;
-import lombok.Builder;
 import lombok.Data;
 
 @Data

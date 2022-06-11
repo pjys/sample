@@ -3,7 +3,7 @@ package com.pjys.board.service;
 import com.pjys.board.dto.BoardDTO;
 import com.pjys.board.dto.CreateBoardRequest;
 import com.pjys.board.entity.Board;
-import com.pjys.board.entity.Category;
+import com.pjys.board.dto.Category;
 import com.pjys.board.repository.BoardRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;

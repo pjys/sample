@@ -1,5 +1,6 @@
 package com.pjys.board.entity;
 
+import com.pjys.board.dto.Category;
 import com.pjys.common.config.BooleanToYNConverter;
 import com.pjys.common.entity.BaseEntity;
 import lombok.*;

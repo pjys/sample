@@ -1,4 +1,4 @@
-package com.pjys.board.entity;
+package com.pjys.board.dto;
 
 public enum Category {
     NORMAL, TASTE;
