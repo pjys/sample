@@ -2,36 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>signUp</title>
+    <title>회원가입</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 </head>
 <body>
-<form class="signup-form" action="/member" method="post">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="user_id" name="userId" type="text" class="validate"/>
-            <label for="user_id">UserId</label>
-        </div>
+<div clas="container">
+    <div class="my-4">
+        <h2>회원가입</h2>
     </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="user_name" name="userName" type="text" class="validate"/>
-            <label for="user_name">UserName</label>
+    <form th:action method="post" th:object="${member}">
+        <div class="mb-3">
+            <label for="user_name" class="form-label">닉네임</label>
+            <input type="text" class="form-control" id="user_name" th:field="*{userName}">
         </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="email" name="userEmail" type="email" class="validate"/>
-            <label for="email">Email</label>
+        <div class="mb-3">
+            <label for="email" class="form-label">이메일</label>
+            <input type="text" class="form-control" id="email" th:field="*{userEmail}">
         </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="password" name="userPassword" type="password" class="validate"/>
-            <label for="password">Password</label>
+        <div class="mb-3">
+            <label for="password" class="form-label">비밀번호</label>
+            <input type="password" class="form-control" id="password" th:field="*{userPassword}">
         </div>
-    </div>
-    <input class="signup-btn waves-effect waves-light-btn" type="submit" value="가입하기">
-</form>
+
+        <hr class="my-3">
+        <div class="mb-3">
+            <div th:each="r : ${roles}" class="form-check form-check-inline">
+                <input type="radio" th:field="*{role}" th:value="${r.value}" class="form-check-input">
+                <label th:for="${#ids.prev('role')}" th:text="${r.key}" class="form-check-label"></label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">회원가입</button>
+    </form>
+</div>
 </body>
 </html>
