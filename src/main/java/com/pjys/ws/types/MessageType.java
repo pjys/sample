@@ -11,4 +11,5 @@ public enum MessageType {
     TEST,
     CHAT, //채팅메세지
     POSITION, //위치정보
+    ENTER, //유저 입장
 }

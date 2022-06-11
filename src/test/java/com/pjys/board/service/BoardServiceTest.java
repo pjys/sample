@@ -3,7 +3,7 @@ package com.pjys.board.service;
 import com.pjys.board.dto.BoardDTO;
 import com.pjys.board.dto.CreateBoardRequest;
 import com.pjys.board.entity.Board;
-import com.pjys.board.entity.Category;
+import com.pjys.board.dto.Category;
 import com.pjys.board.repository.BoardRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -59,7 +59,7 @@ class BoardServiceTest {
     private CreateBoardRequest CreateBoardRequest() {
         CreateBoardRequest boardRequest = new CreateBoardRequest();
         boardRequest.setTitle("게시판테스트");
-        boardRequest.setCategory(Category.NORMAL.getValue());
+        boardRequest.setCategory(Category.NORMAL);
         boardRequest.setContents("게시판내용");
         boardRequest.setUserId("lyh0208");
         boardRequest.setUserName("이연희");
@@ -84,7 +84,7 @@ class BoardServiceTest {
     private Board createBoardEntity(CreateBoardRequest createBoardRequest) {
         return Board.builder()
                 .title(createBoardRequest.getTitle())
-                .category(Category.enumOf(createBoardRequest.getCategory()))
+                .category(createBoardRequest.getCategory())
                 .contents(createBoardRequest.getContents())
                 .userId(createBoardRequest.getUserId())
                 .userName(createBoardRequest.getUserName())

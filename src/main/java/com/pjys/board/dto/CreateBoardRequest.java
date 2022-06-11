@@ -1,15 +1,13 @@
 package com.pjys.board.dto;
 
 import com.pjys.board.entity.Board;
-import com.pjys.board.entity.Category;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
 public class CreateBoardRequest {
     private String title;
     private String contents;
-    private String category;
+    private Category category;
     private String userId;
     private String userName;
 
@@ -17,7 +15,7 @@ public class CreateBoardRequest {
         return Board.builder()
                 .title(title)
                 .contents(contents)
-                .category(Category.enumOf(category))
+                .category(category)
                 .userId(userId)
                 .userName(userName)
                 .isDelete(false)
