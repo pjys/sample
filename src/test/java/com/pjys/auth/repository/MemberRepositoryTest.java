@@ -16,11 +16,10 @@ class MemberRepositoryTest {
     @Autowired
     MemberRepository memberRepository;
 
-    @Test
+    /*@Test
     public void insertTest() {
         for (int i = 0; i < 100; i++) {
             Member member = new Member();
-            member.setUserId("user" + i);
             member.setUserPassword("pw" + i);
             member.setUserEmail("user" + i + "@test.com");
             MemberRole role = new MemberRole();
@@ -34,6 +33,6 @@ class MemberRepositoryTest {
             member.setRoles(Arrays.asList(role));
             memberRepository.save(member);
         }
-    }
+    }*/
 
 }
