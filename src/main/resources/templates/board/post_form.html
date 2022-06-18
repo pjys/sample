@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 작성</title>
+    <script type="text/javascript" th:src="@{/se2/js/service/HuskyEZCreator.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    initEditor();
+});
+
+// 스마트에디터 세팅
+function initEditor() {
+    var oEditors = [];
+
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "contents",
+        sSkinURI: "/se2/SmartEditor2Skin.html",
+        fCreator: "createSEditor2"
+    });
+}
+</script>
+
+<body>
+<form action="/post/write" method="post" >
+    <div class="row">
+        <select name="category"> <!-- TODO: 카테고리 개인화하기 -->
+            <option value="NOME">카테고리선택</option>
+            <option value="NORMAL">일반</option>
+            <option value="TASTE">맛집</option>
+        </select>
+
+        <input type="text" name="title" style="width:500px" />
+        <input type="submit" name="saveBtn" value="저장">
+    </div>
+    <div class="row">
+        <textarea name="contents" id="contents" rows="20" cols="100">
+            내용을 입력하세요
+        </textarea>
+    </div>
+</form>
+</body>
+</html>
