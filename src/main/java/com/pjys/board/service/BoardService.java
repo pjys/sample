@@ -22,19 +22,18 @@ public class BoardService {
     private final BoardMapper mapper = Mappers.getMapper(BoardMapper.class);
 
     public Long createBoard(CreateBoardRequest board) {
-        Board newBoard = boardRepository.save(board.toEntity());
+        Board newBoard = boardRepository.save(mapper.to(board));
         return newBoard.getBoardId();
     }
 
     public BoardDTO getBoard(Long boardId) {
         Board boardById = boardRepository.getById(boardId);
-        return BoardDTO.fromEntity(boardById);
+        return mapper.to(boardById);
     }
 
     public List<BoardDTO> boardList() {
         List<Board> boardList = boardRepository.findAll();
-        List<BoardDTO> boardDTOList = mapper.to(boardList);
 
-        return boardDTOList;
+        return mapper.to(boardList);
     }
 }

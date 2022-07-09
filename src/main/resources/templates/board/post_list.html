@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <th>순번</th>
+        <th>카테고리</th>
+        <th>제목</th>
+        <th>작성일</th>
+        <th>작성자</th>
+        <th>조회수</th>
+    </tr>
+    <tr th:each="board : ${boardList}">
+        <td th:text="${board.boardId}">index</td>
+        <td th:text="${board.category}">category</td>
+        <td th:text="${board.title}">title</td>
+        <td th:text="${#temporals.format(board.createDate, 'yyyy.MM.dd')}">createDate</td>
+        <td th:text="${board.userName}">userName</td>
+        <td th:text="${board.views}">views</td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -2,26 +2,50 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>게시판 목록</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+
+<script type="javascript">
+
+    var app = new Vue({
+      el: '#boardForm',
+      data: {
+        message: '테스트'
+      },
+      methods: {
+        create_board : function(event) {
+
+        }
+      }
+    })
+
+</script>
 <body>
+<!--<form v-on:submit.prevent>-->
+<form action="/board/create" method="post" >
+    <div id="boardForm" class="row">
+        게시판 <!--{{message}} -->
+        <input type="text" name="name" style="width:500px" />
+        <input type="button" id="saveBtn" name="saveBtn" value="저장">
+<!--        <button v-on:click="create_board">-->
+        </input>
+    </div>
+</form>
 
 <table border="1">
     <tr>
         <th>순번</th>
-        <th>카테고리</th>
-        <th>제목</th>
-        <th>작성일</th>
-        <th>작성자</th>
-        <th>조회수</th>
+        <th>게시판명</th>
+        <th>생성일</th>
+        <th>생성자</th>
     </tr>
     <tr th:each="board : ${boardList}">
         <td th:text="${board.boardId}">index</td>
-        <td th:text="${board.category}">category</td>
-        <td th:text="${board.title}">title</td>
+        <td th:text="${board.name}">name</td>
         <td th:text="${#temporals.format(board.createDate, 'yyyy.MM.dd')}">createDate</td>
         <td th:text="${board.userName}">userName</td>
-        <td th:text="${board.views}">views</td>
     </tr>
 </table>
 
