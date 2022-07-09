@@ -11,12 +11,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Data
-public class BoardDTO {
-    private long boardId;
-    private String name;
+public class PostDTO {
+    private long postId;
+    private String title;
+    private BoardDTO board;
+    private Category category;
+    private String contents;
     private String userId;
     private String userName;
     private boolean delete;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
+    private int views;
+    private int comments;
 }

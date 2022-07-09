@@ -24,47 +24,33 @@ public class BoardController {
     private final BoardService boardService;
 
     /**
-     * 게시글 단건 조회
-     * @param model
-     * @param id
-     * @return
-     */
-    @GetMapping("/board/{id}")
-    public String boardDetail(Model model, @PathVariable long id) {
-        BoardDTO board = boardService.getBoard(id);
-        model.addAttribute("board", board);
-        return "/board/board";
-    }
-
-
-    /**
-     * 게시글 작성
+     * 게시판 생성
      * @param model
      * @param createBoard
      * @return
      */
-    @PostMapping("/board/write")
-    public String boardAdd(Model model, CreateBoardRequest createBoard) {
+    @PostMapping("/board/create")
+    public String boardCreate(Model model, CreateBoardRequest createBoard) {
         createBoard.setUserName("이연희");
         createBoard.setUserId("lyh0208");
         Long newBoardId = boardService.createBoard(createBoard);
-        return "/board/board/"+newBoardId;
+        return "redirect:/boards";
     }
 
-
     /**
-     * 게시글 작성 폼 조회
+     * 게시판 작성 폼 조회
+     * TODO: 게시판 목록에서 생성할 수 있도록 변경
      * @param model
      * @return
      */
-    @GetMapping("/board/writeForm")
-    public String boardWriteForm(Model model) {
+    @GetMapping("/board/createForm")
+    public String boardCreateForm(Model model) {
         // TODO : 카테고리 개인화
         return "/board/board_form";
     }
 
     /**
-     * 게시글 목록 조회
+     * 게시판 목록 조회
      * @param model
      * @return
      */
@@ -73,7 +59,6 @@ public class BoardController {
         List<BoardDTO> boardList = boardService.boardList();
         model.addAttribute("boardList", boardList);
 
-        //log.
         return "/board/board_list";
     }
 }

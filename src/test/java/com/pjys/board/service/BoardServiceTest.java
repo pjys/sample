@@ -58,8 +58,7 @@ class BoardServiceTest {
 
     private CreateBoardRequest CreateBoardRequest() {
         CreateBoardRequest boardRequest = new CreateBoardRequest();
-        boardRequest.setTitle("게시판테스트");
-        boardRequest.setCategory(Category.NORMAL);
+        boardRequest.setName("게시판테스트");
         boardRequest.setContents("게시판내용");
         boardRequest.setUserId("lyh0208");
         boardRequest.setUserName("이연희");
@@ -83,9 +82,7 @@ class BoardServiceTest {
 
     private Board createBoardEntity(CreateBoardRequest createBoardRequest) {
         return Board.builder()
-                .title(createBoardRequest.getTitle())
-                .category(createBoardRequest.getCategory())
-                .contents(createBoardRequest.getContents())
+                .name(createBoardRequest.getName())
                 .userId(createBoardRequest.getUserId())
                 .userName(createBoardRequest.getUserName())
                 .build();
