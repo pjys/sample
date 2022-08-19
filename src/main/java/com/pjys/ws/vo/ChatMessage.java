@@ -8,6 +8,7 @@ import lombok.*;
 @Getter
 @Builder
 public class ChatMessage {
+    private String roomName;
     private MessageType messageType;
     private String message;
     private String sender;

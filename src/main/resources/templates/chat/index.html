@@ -58,11 +58,16 @@
     </div>
 </div>
 </body>
-<script></script>
-<script type="text/javascript">
+<script th:inline="javascript">
     const Chat = (function(){
 
-        var USER_ID = Math.random().toString(36).substr(2,11); //랜덤아이디 생성
+        /*<![CDATA[*/
+        // var userInfo = /*[[${userInfo}]]*/ {};
+        const userName = /*[[${userName}]]*/'';
+        const roomName = /*[[${roomName}]]*/'';
+        /*]]>*/
+
+        var USER_ID = userName;
         const myName = USER_ID;
         // $("#chatbtn").on("click",function(){
         //     stompClient.send('/app/test/chat',{},JSON.stringify({sender:USER_ID,message:$("#chatText").val()}))
@@ -73,8 +78,8 @@
 
         //소켓 정상 연결된 후
         function onConnected(){
-            stompClient.subscribe('/topic/chat/', onMessageReceived); //연결되면 수신시 받을 함수와 매핑
-            stompClient.send('/app/test/enter',{},JSON.stringify({sender:USER_ID}));
+            stompClient.subscribe('/topic/chat/'+roomName, onMessageReceived); //연결되면 수신시 받을 함수와 매핑
+            stompClient.send('/app/chat/enter',{},JSON.stringify({roomName:roomName,sender:USER_ID}));
         }
 
         function onMessageReceived(payload){
@@ -101,7 +106,7 @@
             $(document).on('keydown', 'div.input-div textarea', function(e){
                 if(e.keyCode == 13 && !e.shiftKey) {
                     e.preventDefault();
-                    stompClient.send('/app/test/chat',{},JSON.stringify({sender:USER_ID,message:$(this).val()}));
+                    stompClient.send('/app/chat/send',{},JSON.stringify({roomName:roomName,sender:USER_ID,message:$(this).val()}));
                     // const message = $(this).val();
                     //
                     // // 메시지 전송
@@ -125,8 +130,6 @@
             }else{
                 chatLi.find('.message').hide();
             }
-
-
             return chatLi;
         }
 

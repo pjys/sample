@@ -32,16 +32,18 @@ public class WebSocketEventListener {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
 
         String sender = (String) headerAccessor.getSessionAttributes().get("sender");
+        String roomName = (String) headerAccessor.getSessionAttributes().get("roomName");
         System.out.println(sender);
 
         ChatMessage message = ChatMessage.builder()
+                .roomName(roomName)
                 .messageType(MessageType.LEAVE)
                 .sender(sender)
                 .build();
 
         if(Strings.isNotEmpty(sender)){
             WsController.users.remove(sender);
-            messagingTemplate.convertAndSend("/topic/chat/",message);
+            messagingTemplate.convertAndSend("/topic/chat/"+roomName,message);
             System.out.println(sender+" leave");
         }
         logger.info("Session Disconnected");

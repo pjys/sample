@@ -12,4 +12,5 @@ public enum MessageType {
     CHAT, //채팅메세지
     POSITION, //위치정보
     ENTER, //유저 입장
+    WHISPER, //귓속말
 }

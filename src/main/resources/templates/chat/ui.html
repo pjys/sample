@@ -1,0 +1,337 @@
+<html lang="en">
+<head>
+    <style type="text/css">@charset "UTF-8";
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+        display: none !important;
+    }
+
+    ng\:form {
+        display: block;
+    }</style>
+
+    <meta charset="UTF-8">
+
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon"
+          href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon"
+          href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
+          color="#111">
+
+
+    <title>CodePen - Swanky Chatbox</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,300,700" rel="stylesheet" type="text/css">
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Nunito", sans-serif;
+        }
+
+        html, body {
+            background: linear-gradient(120deg, #17bebb, #f0a6ca);
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .container h1 {
+            margin: 0.5em auto;
+            color: #FFF;
+            text-align: center;
+        }
+
+        .chatbox {
+            background: rgba(255, 255, 255, 0.05);
+            width: 600px;
+            height: 75%;
+            border-radius: 0.2em;
+            position: relative;
+            box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-right .chatbox__messages__user-message--ind-message {
+            float: right;
+        }
+
+        .message-right .chatbox__messages__user-message--ind-message:after {
+            content: "";
+            position: absolute;
+            margin: -1.5em -17.06em;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .message-left .chatbox__messages__user-message--ind-message {
+            float: left;
+        }
+
+        .message-left .chatbox__messages__user-message--ind-message:after {
+            content: "";
+            position: absolute;
+            margin: -1.5em 1.87em;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .chatbox__messages__user-message {
+            width: 450px;
+        }
+
+        .chatbox__messages__user-message--ind-message {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1em 0;
+            height: auto;
+            width: 65%;
+            border-radius: 5px;
+            margin: 2em 1em;
+            overflow: auto;
+        }
+
+        .chatbox__messages__user-message--ind-message > p.name {
+            color: #FFF;
+            font-size: 1em;
+        }
+
+        .chatbox__messages__user-message--ind-message > p.message {
+            color: #FFF;
+            font-size: 0.7em;
+            margin: 0 2.8em;
+        }
+
+        .chatbox__user-list {
+            background: rgba(255, 255, 255, 0.1);
+            width: 25%;
+            height: 100%;
+            float: right;
+            border-top-right-radius: 0.2em;
+            border-bottom-right-radius: 0.2em;
+        }
+
+        .chatbox__user-list h1 {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9em;
+            padding: 1em;
+            margin: 0;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .chatbox__user, .chatbox__user--away, .chatbox__user--busy, .chatbox__user--active {
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 100%;
+            margin: 1em 0.7em;
+        }
+
+        .chatbox__user--active {
+            background: rgba(23, 190, 187, 0.8);
+        }
+
+        .chatbox__user--busy {
+            background: rgba(252, 100, 113, 0.8);
+        }
+
+        .chatbox__user--away {
+            background: rgba(255, 253, 130, 0.8);
+        }
+
+        .chatbox p {
+            float: left;
+            text-align: left;
+            margin: -0.25em 2em;
+            font-size: 0.7em;
+            font-weight: 300;
+            color: #FFF;
+            width: 200px;
+        }
+
+        .chatbox form {
+            background: #222;
+        }
+
+        .chatbox form input {
+            background: rgba(255, 255, 255, 0.03);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border: none;
+            width: 75%;
+            padding: 1.2em;
+            outline: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
+        ::-webkit-input-placeholder {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        :-moz-placeholder {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        ::-moz-placeholder {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        :-ms-input-placeholder {
+            color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+
+    <script>
+        window.console = window.console || function (t) {
+        };
+    </script>
+
+
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+
+
+    <style data-emotion="css" data-s=""></style>
+</head>
+
+<body translate="no" data-new-gr-c-s-check-loaded="14.1067.0" data-gr-ext-installed="">
+<div class="container ng-scope" ng-app="chatApp">
+    <h1>Swanky Chatbox UI With Angular</h1>
+    <div class="chatbox ng-scope" ng-controller="MessageCtrl as chatMessage">
+        <!--유저리스트 영역-->
+        <div class="chatbox__user-list">
+            <h1>User list</h1>
+            <div class="chatbox__user--active">
+                <p>Jack Thomson</p>
+            </div>
+            <div class="chatbox__user--busy">
+                <p>Angelina Jolie</p>
+            </div>
+            <div class="chatbox__user--active">
+                <p>George Clooney</p>
+            </div>
+            <div class="chatbox__user--active">
+                <p>Seth Rogen</p>
+            </div>
+            <div class="chatbox__user--away">
+                <p>John Lydon</p>
+            </div>
+        </div>
+        <!--유저리스트 영역 끝-->
+        <div class="message-area" style="overflow:auto;">
+
+        </div>
+        <!--메세지 시작-->
+<!--        <div class="chatbox__messages ng-scope" ng-repeat="message in messages">-->
+<!--            <div class="chatbox__messages__user-message">-->
+<!--                <div class="chatbox__messages__user-message&#45;&#45;ind-message">-->
+<!--                    <p class="name ng-binding">George Clooney</p>-->
+<!--                    <br>-->
+<!--                    <p class="message ng-binding">The only failure is not to try</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <!--메세지 끝-->
+        <form class="ng-pristine ng-valid">
+            <input id="messageText" type="text" placeholder="메세지 입력">
+        </form>
+    </div>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+<!--    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).on('keydown', '#messageText', function(e){
+            if(e.keyCode == 13 && !e.shiftKey) {
+                e.preventDefault();
+                addMessege("message-left");
+                // stompClient.send('/app/chat/send',{},JSON.stringify({roomName:roomName,sender:USER_ID,message:$(this).val()}));
+                // const message = $(this).val();
+                //
+                // // 메시지 전송
+                // sendMessage(message);
+                // 입력창 clear
+                clearTextarea();
+            }
+        });
+
+        // 메세지 입력박스 내용 지우기
+        function clearTextarea() {
+            $("#messageText").val('');
+        }
+
+        function addMessege(position){
+            let html = '';
+            html += '<div class="ng-scope" ng-repeat="message in messages">';
+            html += '    <div class="chatbox__messages__user-message">';
+            html += '        <div class="chatbox__messages__user-message--ind-message">';
+            html += '            <p class="name ng-binding">George Clooney</p>';
+            html += '            <br>';
+            html += '                <p class="message ng-binding">The only failure is not to try</p>';
+            html += '        </div>';
+            html += '    </div>';
+            html += '</div>';
+            let html_ = $(html);
+            html_.addClass(position);
+            $('.message-area').append(html_);
+        }
+
+
+        (function () {
+            // var app = angular.module('chatApp', []);
+            //
+            // app.controller('MessageCtrl', function ($scope) {
+            //     $scope.messages = [
+            //         {
+            //             Name: 'George Clooney',
+            //             Message: "The only failure is not to try"
+            //         },
+            //         {
+            //             Name: 'Seth Rogen',
+            //             Message: "I grew up in Vancouver, man. That's where more than half of my style comes from."
+            //         },
+            //         {
+            //             Name: 'John Lydon',
+            //             Message: "There's nothing glorious in dying. Anyone can do it."
+            //         },
+            //         {
+            //             Name: '전필원',
+            //             Message: "There's nothing glorious in dying. Anyone can do it."
+            //         },
+            //         ];
+            // });
+
+        })();
+        //# sourceURL=pen.js
+    </script>
+
+
+</div>
+<div id="__endic_crx__">
+    <div class="css-1abc5oq"></div>
+</div>
+</body>
+<grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+</html>
